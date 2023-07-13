@@ -1,7 +1,7 @@
 main:
   - title: "Home"
     url: /
-  - title: "Posts"
+  - title: "Articulos"
     url: /year-archive/
   - title: "Categorías"
     url: /categories/
