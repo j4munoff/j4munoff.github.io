@@ -7,5 +7,5 @@ main:
     url: /categories/
   - title: "Etiquetas"
     url: /tags/
-  - title: "Acerca de"
+  - title: "Contacto"
     url: /about/
