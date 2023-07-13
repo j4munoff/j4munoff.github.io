@@ -25,6 +25,7 @@ layout: archive
   {% endfor %}
 </ul>
 
+
 {% for i in (1..tags_max) reversed %}
   {% for tag in site.tags %}
     {% if tag[1].size == i %}
@@ -35,7 +36,7 @@ layout: archive
             {% include archive-single.html type=page.entries_layout %}
           {% endfor %}
         </div>
-        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back1 to Top' }} &uarr;</a>
+        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Volver arriba' }} &uarr;</a>
       </section>
     {% endif %}
   {% endfor %}
