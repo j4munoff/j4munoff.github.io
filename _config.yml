@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "haxor" # "air", "aqua", "contrast", "dark", "dirt", 
 
 # Site Settings
 locale                   : "es-ES"
-title                    : "snowscan.io"
+title                    : "J4munoff"
 title_separator          : "-"
 name                     : "J4mmunoff"
 description              : "Articulos de ciberseguridad"
@@ -102,7 +102,7 @@ analytics:
 # Site Author
 author:
   name             : "J4munoff"
-  avatar           : "/assets/images/avatar.png"
+  avatar           : "/assets/images/minion.jpeg"
   bio              : "Pentester, CTF player<br>HackTheBox ATeam"
   location         : "España"
   email            : "jamunoz412@gmail.com"
