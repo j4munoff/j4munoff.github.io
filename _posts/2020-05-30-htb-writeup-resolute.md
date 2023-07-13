@@ -10,12 +10,7 @@ header:
   icon: /assets/images/hackthebox.webp
 categories:
   - hackthebox
-  - infosec
 tags:
-  - rid cycling
-  - password spray
-  - creds in plaintext
-  - bloodhound
   - dns
 ---
 
