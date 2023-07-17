@@ -1,22 +1,22 @@
 ---
 layout: single
-title: Resolute - Hack The Box
-excerpt: "We start Resolute with enumeration of the domain user accounts using an anonymous bind session to the LDAP server and find an initial password in the description field of one of the account. Password spraying the password against all the discovered accounts give us an initial shell then we pivot to another user after finding creds in a console history file. The priv esc is pretty cool: we're in the DNS admins group so we can reconfigure the DNS service to run an arbitrary DLL as SYSTEM."
-date: 2020-05-30
+title: Validation - Hack The Box
+excerpt: "Comenzamos la resolición de la máquina **Validation** de HackTheBox enumerando puertos abiertos. Posteriormente realizaremos la explotación mediante la inclusión de un fichero a traves de una vulnnerabilidad SQLi. Para la escalada de privilegios se reutilizarán contraseñas encontradas"
+date: 2023-07-3
 classes: wide
 header:
-  teaser: /assets/images/htb-writeup-resolute/resolute_logo.png
+  teaser: /assets/images/htb-writeup-validation/Validation.png
   teaser_home_page: true
   icon: /assets/images/hackthebox.webp
 categories:
   - hackthebox
 tags:
-  - dns
+  - sqli
 ---
 
-![](/assets/images/htb-writeup-resolute/resolute_logo.png)
+![](/assets/images/htb-writeup-validation/Validation.png)
 
-We start Resolute with enumeration of the domain user accounts using an anonymous bind session to the LDAP server and find an initial password in the description field of one of the account. Password spraying the password against all the discovered accounts give us an initial shell then we pivot to another user after finding creds in a console history file. The priv esc is pretty cool: we're in the DNS admins group so we can reconfigure the DNS service to run an arbitrary DLL as SYSTEM.
+Comenzamos la resolición de la máquina **Validation** de HackTheBox enumerando puertos abiertos. Posteriormente realizaremos la explotación mediante la inclusión de un fichero a traves de una vulnnerabilidad SQLi. Para la escalada de privilegios se reutilizarán contraseñas encontradas.
 
 ## Summary
 
