@@ -1,21 +1,21 @@
 ---
 layout: single
-title: Empire:BreakOut - VulnHub
+title: Empire: BreakOut - VulnHub
 excerpt: "En este writeup vamos a resolver la máquina **Empire: BreakOut** de la plataforma **VulnHub**. En una máquina Linux y su nivel de dificultad es fácil. En esta máquina encontraremos un usuario y una password en la enumeración que permitirá acceder a una aplicación Webmin. Posteriormente leeremos un fichero de password de root a traves de una vulnerabilidad del ejecutable **tar**."
 date: 2023-07-18
 classes: wide
 header:
-  teaser: /assets/images/htb-writeup-validation/Validation.png
+  teaser: /assets/images/vulnhub-empire-breakout/breakout.png
   teaser_home_page: true
-  icon: /assets/images/hackthebox.webp
+  icon: /assets/images/vulnhub.png
 categories:
   - vulnhub
 tags:
   - webmin
 ---
 
-![](/assets/images/htb-writeup-validation/Validation.png)
-
+![](/assets/images/vulnhub.png)
+![](/assets/images/vulnhub-empire-breakout/breakout.png)
 
 ## Introducción
 
@@ -36,7 +36,7 @@ PING 192.168.168.158 (192.168.168.158) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.182/1.182/1.182/0.000 ms
 ```
 
-Nos devuelve un ttl de 64 por lo que podemos deducir que estamos ante un sistema **Linux**.
+Nos devuelve un *ttl* de 64 por lo que podemos deducir que estamos ante un sistema **Linux**.
 
 Realizamos un escaneo rápido para obtener puertos abiertos:
 
@@ -112,21 +112,21 @@ Nmap done: 1 IP address (1 host up) scanned in 41.92 seconds
 
 Al estar el puerto **SMB** abierto, (445), podemos enumerar con **enum4linux** para descubrir recursos compartidos y usuarios:
 
-![Alt text](image.png)
+![](/assets/images/vulnhub-empire-breakout/image.png)
 
 Nos encuentra el usuario **cyber**.
 
 Revisamos a continuación la web del puerto 80.
 
-![Alt text](image-1.png)
+![](/assets/images/vulnhub-empire-breakout/image-1.png)
 
 A priori parece la página por defecto de Apache. Revisamos el código fuente y vemos que tiene una barra de desplazamiento muy larga. Nos desplazamos al final:
 
-![Alt text](image-2.png)
+![](/assets/images/vulnhub-empire-breakout/image-2.png)
 
 Vemos un texto cifrado en **Brainfuck**. Desciframos el código:
 
-![Alt text](image-3.png)
+![](/assets/images/vulnhub-empire-breakout/image-3.png)
 
 Encontramos una posible password.
 
@@ -134,23 +134,23 @@ Encontramos una posible password.
 
 Ahora exploramos las aplicaciones Web de los puertos 10000 y 20000. Ambas nos  muestran la pantalla de autenticación de un Webmin. 
 
-![Alt text](image-4.png)
+![](/assets/images/vulnhub-empire-breakout/image-4.png)
 
 Probamos a validarnos con el usuario cyber y la password encontrada. En la aplicación del puerto 20000 nos permite la entrada.
 
-![Alt text](image-5.png)
+![](/assets/images/vulnhub-empire-breakout/image-5.png)
 
 Webmin tiene una utilidad de linea de comandos. Podemos utilizarla para enviarnos una reverse shell:
 
-![Alt text](image-6.png)
+![](/assets/images/vulnhub-empire-breakout/image-6.png)
 
 Y obtenemos acceso:
 
-![Alt text](image-7.png)
+![](/assets/images/vulnhub-empire-breakout/image-7.png)
 
 Y podemos leer la flag de usuario:
 
-![Alt text](image-8.png)
+![](/assets/images/vulnhub-empire-breakout/image-8.png)
 
 ## Escalada
 
@@ -178,28 +178,28 @@ cyber@breakout:~$
 
 Realizamos las típicas tareas de búsqueda de vectores de escalada. No vemos nada reseñable. Si que vemos un ejecutable "tar" en el directorio del usuario **cyber** con permisos de root que nos resulta estraño:
 
-![Alt text](image-9.png)
+![](/assets/images/vulnhub-empire-breakout/image-9.png)
 
 Buscamos ficheros sensibles con patrones como **pass**, **backup**, etc.
 
 Con el comando **find / -name "*pass*" 2>/dev/null** encontramos un archivo interesante:
 
-![Alt text](image-10.png)
+![](/assets/images/vulnhub-empire-breakout/image-10.png)
 
 Recordemos que dentro del home del usuario hay una utilidad **tar**. Es posible utilizar esta utilidad para leer ficheros protegidos:
 
-![Alt text](image-11.png)
+![](/assets/images/vulnhub-empire-breakout/image-11.png)
 
 Podemos utilizar esta vulnerabilidad para leer el fichero encontrado:
 
-![Alt text](image-12.png)
+![](/assets/images/vulnhub-empire-breakout/image-12.png)
 
 Utilizamos esta contraseña para cambiar al usuario root:
 
-![Alt text](image-13.png)
+![](/assets/images/vulnhub-empire-breakout/image-13.png)
 
 Y podemos leer su flag:
 
-![Alt text](image-14.png)
+![](/assets/images/vulnhub-empire-breakout/image-14.png)
 
 
