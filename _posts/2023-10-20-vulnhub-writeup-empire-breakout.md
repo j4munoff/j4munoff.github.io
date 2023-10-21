@@ -2,7 +2,7 @@
 layout: single
 title: Empire - BreakOut - VulnHub
 excerpt: "En este writeup vamos a resolver la máquina **Empire: BreakOut** de la plataforma **VulnHub**. En una máquina Linux y su nivel de dificultad es fácil. En esta máquina encontraremos un usuario y una password en la enumeración que permitirá acceder a una aplicación Webmin. Posteriormente leeremos un fichero de password de root a traves de una vulnerabilidad del ejecutable **tar**."
-date: 2023-07-18
+date: 2023-10-20
 classes: wide
 header:
   teaser: /assets/images/vulnhub-empire-breakout/breakout.png
